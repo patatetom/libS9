@@ -57,6 +57,14 @@ None
 '0BDA3FF0:5:[FFFFFFFFFFFF]'
 >>> reader.readBlock(7)
 '0BDA3FF0:7:000000000000FF078000FFFFFFFFFFFF'
+
+>>> # key can be passed as bytes, string or integer
+>>> reader.readBlock(2, b'\xff'*6)
+'0BDA3FF0:2:1234567890ABCDEF1234567890ABCDEF'
+>>> reader.readBlock(2, 'ff'*6)
+'0BDA3FF0:2:1234567890ABCDEF1234567890ABCDEF'
+>>> reader.readBlock(2, 0xFFFFFFFFFFFF)
+'0BDA3FF0:2:1234567890ABCDEF1234567890ABCDEF'
 ```
 
 
