@@ -46,9 +46,16 @@ except `readUID`, all the proposed functions expect a `block number` as input.
 
 >>> # can't use writeBlock on access control block (trailer)
 >>> # block 3 is the trailer block of sector 0 [012[3]][456[7]]...
+>>> reader.writeBlock(1, '11'*16)
+'0BDA3FF0:1:11111111111111111111111111111111'
 >>> reader.writeBlock(3, '4BAD'*4)
 >>> print(reader.writeBlock(3, '4BAD'*4))
 None
+>>> # and of course on manufacturer block
+>>> reader.writeBlock(0, '4BAD'*4)
+>>> print(reader.writeBlock(0, '4BAD'*4))
+None
+
 
 >>> # change keyA on block 7 (trailer) of sector 1 [012[3]][456[7]]...
 >>> reader.changeKey(4, 'EE'*6)
