@@ -22,4 +22,11 @@ except `readUID`, all the proposed functions expect a `block number` as input.
 
 >>> reader.readUID()
 '0BDA3FF0'
+
+>>> reader.readBlock()
+'0BDA3FF0:0:F03FDA0B1E8804000000000000000000'
+>>> reader.readBlock(0)
+'0BDA3FF0:0:F03FDA0B1E8804000000000000000000'
+>>> reader.readBlock(0, 'FF'*6)
+'0BDA3FF0:0:F03FDA0B1E8804000000000000000000'
 ```
