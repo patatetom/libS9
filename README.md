@@ -14,12 +14,13 @@ except `readUID`, all the proposed functions expect a `block number` as input.
 
 ```pycon
 >>> from libS9 import Reader
-
 >>> reader = Reader('/dev/usb/hiddev3')
 
+>>> # get UID tag
 >>> reader.readUID()
 '0BDA3FF0'
 
+>>> # read first block 
 >>> reader.readBlock()
 '0BDA3FF0:0:F03FDA0B1E8804000000000000000000'
 >>> reader.readBlock(0)
@@ -48,6 +49,14 @@ except `readUID`, all the proposed functions expect a `block number` as input.
 >>> reader.writeBlock(3, '4BAD'*4)
 >>> print(reader.writeBlock(3, '4BAD'*4))
 None
+
+>>> # change keyA on block 7 (trailer) of sector 1 [012[3]][456[7]]...
+>>> reader.changeKey(4, 'EE'*6)
+'0BDA3FF0:4:[EEEEEEEEEEEE]'
+>>> reader.resetKey(5, 'EE'*6)
+'0BDA3FF0:5:[FFFFFFFFFFFF]'
+>>> reader.readBlock(7)
+'0BDA3FF0:7:000000000000FF078000FFFFFFFFFFFF'
 ```
 
 
