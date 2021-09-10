@@ -27,7 +27,7 @@ except `readUID`, all the proposed functions expect a `block number` as input.
 >>> reader.readBlock(0, 'FF'*6)
 '0BDA3FF0:0:F03FDA0B1E8804000000000000000000'
 
->>> # blocks 0, 1, 2 & 3 are on the same sector (0)
+>>> # blocks 0, 1, 2 & 3 are on the same sector 0 [012[3]][456[7]]...
 >>> reader.readBlock(0)
 '0BDA3FF0:0:F03FDA0B1E8804000000000000000000'
 >>> reader.readBlock(1)
@@ -42,6 +42,12 @@ except `readUID`, all the proposed functions expect a `block number` as input.
 '0BDA3FF0:2:1234567890ABCDEF1234567890ABCDEF'
 >>> reader.readSector(1)
 ['0BDA3FF0:0:F03FDA0B1E8804000000000000000000', '0BDA3FF0:1:00000000000000000000000000000000', '0BDA3FF0:2:1234567890ABCDEF1234567890ABCDEF', '0BDA3FF0:3:000000000000FF078000FFFFFFFFFFFF']
+
+>>> # can't use writeBlock on access control block (trailer)
+>>> # block 3 is the trailer block of sector 0 [012[3]][456[7]]...
+>>> reader.writeBlock(3, '4BAD'*4)
+>>> print(reader.writeBlock(3, '4BAD'*4))
+None
 ```
 
 
