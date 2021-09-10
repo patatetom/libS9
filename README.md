@@ -90,6 +90,8 @@ None
 '0BDA3FF0:60:[102030102030]'
 >>> reader.readBlock(60)
 False
+>>> reader.writeBlock(60, '88'*16)
+False
 >>> reader.readSector(60)
 [False, False, False, False]
 >>> reader.readSector(60, '102030102030')
