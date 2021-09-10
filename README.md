@@ -61,8 +61,10 @@ None
 >>> # REMEMBER (WRITE DOWN) THE KEYS YOU INSTALL
 >>> reader.changeKey(4, 'EE'*6)
 '0BDA3FF0:4:[EEEEEEEEEEEE]'
->>> reader.resetKey(5, 'EE'*6)
-'0BDA3FF0:5:[FFFFFFFFFFFF]'
+>>> reader.changeKey(5, 'AA'*6, 'EE'*6)
+'0BDA3FF0:5:[AAAAAAAAAAAA]'
+>>> reader.resetKey(6, 'AA'*6)
+'0BDA3FF0:6:[FFFFFFFFFFFF]'
 >>> reader.readBlock(7)
 '0BDA3FF0:7:000000000000FF078000FFFFFFFFFFFF'
 
